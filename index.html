@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ling | Web Developer Portfolio</title>
+  <meta name="description" content="Explore my web development portfolio, including responsive websites built with HTML and CSS.">
+  <meta name="theme-color" content="#101010">
+
+  <style>
+    :root {
+      --bg: #101010;
+      --surface: #191919;
+      --gold: #d8b34d;
+      --text: #f5f5f5;
+      --muted: #b9b9b9;
+      --border: #34312a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(16, 16, 16, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse at 85% 25%, #40341d 0%, transparent 38%),
+        linear-gradient(135deg, #101010, #171717);
+    }
+
+    .hero-content {
+      padding: 85px 0;
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    h1 span,
+    h2 span {
+      color: var(--gold);
+    }
+
+    .hero-description {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 22px;
+      border: 1px solid var(--gold);
+      border-radius: 5px;
+      font-weight: bold;
+      margin: 5px 8px 5px 0;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary:hover {
+      background: #f0d783;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 42px);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 650px;
+    }
+
+    #about {
+      border-top: 1px solid var(--border);
+    }
+
+    .about-copy {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    #projects {
+      background: var(--surface);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #121212;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .project-preview {
+      min-height: 190px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top right, #55431d, transparent 55%),
+        #202020;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-preview span {
+      color: var(--gold);
+      font-size: clamp(25px, 4vw, 38px);
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .project-details {
+      padding: 25px;
+    }
+
+    .project-details h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .project-details p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tags span {
+      padding: 5px 10px;
+      background: #27251f;
+      color: #ead28b;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .text-link {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .skill {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .skill h3 {
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    #contact {
+      background: var(--surface);
+    }
+
+    .contact-panel {
+      padding: 35px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #121212;
+    }
+
+    .contact-panel p {
+      max-width: 650px;
+      color: var(--muted);
+      margin: 12px 0 22px;
+    }
+
+    footer {
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 15px 0;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .hero-content {
+        padding: 70px 0;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .project-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        padding: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#home">EBENEZER ADDO.</a>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <p class="eyebrow">Aspiring Web Developer</p>
+
+        <h1>I build websites<br>that help <span>businesses</span><br>show up online.</h1>
+
+        <p class="hero-description">
+          I create clean, responsive websites designed to present businesses
+          professionally and help customers find the information they need.
+          Explore my work and let's discuss your next project.
+        </p>
+
+        <a class="button button-primary" href="#projects">
+          Explore My Work →
+        </a>
+
+        <a class="button" href="#contact">
+          Contact Me
+        </a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">A Little About Me</p>
+        
+<h2>Meet Ebenezer Addo.</h2>
+
+<p>
+  My name is Ebenezer Nii Adotey Addo. I'm an aspiring web developer
+  passionate about building clean, responsive and user-friendly
+  websites. I turn ideas into practical digital experiences that
+  help businesses establish their online presence. I'm continuously
+  learning, building projects and improving my craft.
+</p>
+
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Projects I've <span>Built.</span></h2>
+          <p>
+            Each project helps me practise real development skills and
+            create useful digital experiences.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-preview">
+              <span>SHARP CUTS.</span>
+            </div>
+
+            <div class="project-details">
+              <h3>Sharp Cuts Barbershop</h3>
+
+              <p>
+                A responsive barbershop website featuring service pricing,
+                business information, and WhatsApp appointment enquiries.
+              </p>
+
+              <div class="tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>Responsive Design</span>
+                <span>GitHub Pages</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  class="text-link"
+                  href="https://godmymaster.github.io/sharp-cuts-barbershop/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Live Website ↗</a>
+
+                <a
+                  class="text-link"
+                  href="https://github.com/Godmymaster/sharp-cuts-barbershop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview">
+              <span>YOUR NEXT PROJECT</span>
+            </div>
+
+            <div class="project-details">
+              <h3>Project Two</h3>
+
+              <p>
+                This space is reserved for your next completed project.
+                Replace this content when you have another working website
+                to showcase.
+              </p>
+
+              <div class="tags">
+                <span>In Progress</span>
+              </div>
+
+              <div class="project-links">
+                <a class="text-link" href="#contact">Discuss a Project ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">My Toolkit</p>
+          <h2>Skills I'm <span>Developing.</span></h2>
+          <p>
+            Practical skills I use to build and publish websites.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill">
+            <h3>HTML5</h3>
+            <p>Structuring web pages with meaningful, accessible elements.</p>
+          </article>
+
+          <article class="skill">
+            <h3>CSS3</h3>
+            <p>Creating layouts, visual styles, and responsive interfaces.</p>
+          </article>
+
+          <article class="skill">
+            <h3>Responsive Design</h3>
+            <p>Adapting websites for desktop and mobile screens.</p>
+          </article>
+
+          <article class="skill">
+            <h3>GitHub</h3>
+            <p>Storing project code and managing website updates.</p>
+          </article>
+
+          <article class="skill">
+            <h3>GitHub Pages</h3>
+            <p>Publishing static websites so people can access them online.</p>
+          </article>
+
+          <article class="skill">
+            <h3>Testing</h3>
+            <p>Checking layouts, links, and basic website functionality.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <p class="eyebrow">Let's Work Together</p>
+          <h2>Have a project in <span>mind?</span></h2>
+
+          <p>
+            Need a website for your business or have an idea you'd like
+            to bring online? Get in touch to discuss the project.
+          </p>
+
+          <!-- Replace the placeholder with your real professional email. -->
+          <a
+            class="button button-primary"
+            href="mailto:addoeben09@gmail.com?subject=Website%20Project%20Enquiry"
+          >
+            Email Me →
+          </a>
+          
+<a href="https://wa.me/233538926574"
+   target="_blank"
+   rel="noopener noreferrer">
+  Chat on WhatsApp
+</a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Ling Built with HTML and CSS.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
